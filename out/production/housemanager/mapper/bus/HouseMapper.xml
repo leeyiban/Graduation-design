@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nxh.bus.mapper.HouseMapper">
+	<resultMap id="BaseResultMap" type="com.nxh.bus.domain.House">
+		<id column="housenumber" jdbcType="VARCHAR" property="housenumber" />
+		<result column="housetype" jdbcType="VARCHAR" property="housetype" />
+		<result column="direction" jdbcType="VARCHAR" property="direction" />
+		<result column="price" jdbcType="DOUBLE" property="price" />
+		<result column="rentprice" jdbcType="DOUBLE"
+			property="rentprice" />
+		<result column="deposit" jdbcType="DOUBLE" property="deposit" />
+		<result column="isrenting" jdbcType="INTEGER"
+			property="isrenting" />
+		<result column="issell" jdbcType="INTEGER"
+				property="issell" />
+		<result column="description" jdbcType="VARCHAR"
+			property="description" />
+		<result column="houseimg" jdbcType="VARCHAR" property="houseimg" />
+		<result column="createtime" jdbcType="TIMESTAMP"
+			property="createtime" />
+
+
+
+	</resultMap>
+	<sql id="Base_Column_List">
+		housenumber, housetype, direction, price, rentprice, deposit, isrenting,issell,description,
+		houseimg,
+		createtime
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from bus_house
+		where housenumber = #{housenumber,jdbcType=VARCHAR}
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from bus_house
+		where housenumber = #{housenumber,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.nxh.bus.domain.House">
+		insert into bus_house (housenumber, housetype, direction,
+		price, rentprice, deposit,
+		isrenting,issell, description, houseimg,
+		createtime)
+		values (#{housenumber,jdbcType=VARCHAR}, #{housetype,jdbcType=VARCHAR},
+		#{direction,jdbcType=VARCHAR},
+		#{price,jdbcType=DOUBLE}, #{rentprice,jdbcType=DOUBLE}, #{deposit,jdbcType=DOUBLE},
+		#{isrenting,jdbcType=INTEGER},#{issell,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR},
+		#{houseimg,jdbcType=VARCHAR},
+		#{createtime,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.nxh.bus.domain.House">
+		insert into bus_house
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="housenumber != null">
+				housenumber,
+			</if>
+			<if test="housetype != null">
+				housetype,
+			</if>
+			<if test="direction != null">
+				direction,
+			</if>
+			<if test="price != null">
+				price,
+			</if>
+			<if test="rentprice != null">
+				rentprice,
+			</if>
+			<if test="deposit != null">
+				deposit,
+			</if>
+			<if test="isrenting != null">
+				isrenting,
+			</if>
+			<if test="issell != null">
+				issell,
+			</if>
+			<if test="description != null">
+				description,
+			</if>
+			<if test="houseimg != null">
+				houseimg,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="housenumber != null">
+				#{housenumber,jdbcType=VARCHAR},
+			</if>
+			<if test="housetype != null">
+				#{housetype,jdbcType=VARCHAR},
+			</if>
+			<if test="direction != null">
+				#{direction,jdbcType=VARCHAR},
+			</if>
+			<if test="price != null">
+				#{price,jdbcType=DOUBLE},
+			</if>
+			<if test="rentprice != null">
+				#{rentprice,jdbcType=DOUBLE},
+			</if>
+			<if test="deposit != null">
+				#{deposit,jdbcType=DOUBLE},
+			</if>
+			<if test="isrenting != null">
+				#{isrenting,jdbcType=INTEGER},
+			</if>
+			<if test="issell != null">
+				#{issell,jdbcType=INTEGER},
+			</if>
+			<if test="description != null">
+				#{description,jdbcType=VARCHAR},
+			</if>
+			<if test="houseimg != null">
+				#{houseimg,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.nxh.bus.domain.House">
+		update bus_house
+		<set>
+			<if test="housetype != null">
+				housetype = #{housetype,jdbcType=VARCHAR},
+			</if>
+			<if test="direction != null">
+				direction = #{direction,jdbcType=VARCHAR},
+			</if>
+			<if test="price != null">
+				price = #{price,jdbcType=DOUBLE},
+			</if>
+			<if test="rentprice != null">
+				rentprice = #{rentprice,jdbcType=DOUBLE},
+			</if>
+			<if test="deposit != null">
+				deposit = #{deposit,jdbcType=DOUBLE},
+			</if>
+			<if test="isrenting != null">
+				isrenting = #{isrenting,jdbcType=INTEGER},
+			</if>
+			<if test="issell != null">
+				issell = #{issell,jdbcType=INTEGER},
+			</if>
+			<if test="description != null">
+				description = #{description,jdbcType=VARCHAR},
+			</if>
+			<if test="houseimg != null">
+				houseimg = #{houseimg,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where housenumber = #{housenumber,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.nxh.bus.domain.House">
+		update bus_house
+		set housetype = #{housetype,jdbcType=VARCHAR},
+		direction = #{direction,jdbcType=VARCHAR},
+		price = #{price,jdbcType=DOUBLE},
+		rentprice = #{rentprice,jdbcType=DOUBLE},
+		deposit = #{deposit,jdbcType=DOUBLE},
+		isrenting = #{isrenting,jdbcType=INTEGER},
+		issell = #{issell,jdbcType=INTEGER},
+		description = #{description,jdbcType=VARCHAR},
+		houseimg = #{houseimg,jdbcType=VARCHAR},
+		createtime = #{createtime,jdbcType=TIMESTAMP}
+		where housenumber = #{housenumber,jdbcType=VARCHAR}
+	</update>
+
+	<!-- 查询 -->
+	<select id="queryAllHouse" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from bus_house
+		<where>
+			<if test="housenumber!=null and housenumber!=''">
+				and housenumber like concat("%",#{housenumber},"%")
+			</if>
+			<if test="housetype!=null and housetype!=''">
+				and housetype like concat("%",#{housetype},"%")
+			</if>
+			<if test="direction!=null and direction!=''">
+				and direction like concat("%",#{direction},"%")
+			</if>
+			<if test="description!=null and description!=''">
+				and description like concat("%",#{description},"%")
+			</if>
+			<if test="isrenting!=null">
+				and isrenting=#{isrenting}
+			</if>
+			<if test="issell!=null">
+				and issell=#{issell}
+			</if>
+		</where>
+	</select>
+
+<!--	卖房,复制粘贴了一份-->
+	<select id="queryAllHouse777" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from bus_house
+		<where>
+			<if test="housenumber!=null and housenumber!=''">
+				and housenumber like concat("%",#{housenumber},"%")
+			</if>
+			<if test="housetype!=null and housetype!=''">
+				and housetype like concat("%",#{housetype},"%")
+			</if>
+			<if test="direction!=null and direction!=''">
+				and direction like concat("%",#{direction},"%")
+			</if>
+			<if test="description!=null and description!=''">
+				and description like concat("%",#{description},"%")
+			</if>
+
+		</where>
+	</select>
+</mapper>

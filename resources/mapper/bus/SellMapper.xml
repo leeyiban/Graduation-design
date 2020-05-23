@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nxh.bus.mapper.SellMapper">
+	<resultMap id="BaseResultMap" type="com.nxh.bus.domain.Sell">
+		<id column="rentid" jdbcType="VARCHAR" property="rentid" />
+		<result column="price" jdbcType="DOUBLE" property="price" />
+		<result column="sellprice" jdbcType="DOUBLE" property="sellprice" />
+		<result column="begindate" jdbcType="TIMESTAMP"
+			property="begindate" />
+		<result column="returndate" jdbcType="TIMESTAMP"
+			property="returndate" />
+		<result column="rentflag" jdbcType="INTEGER"
+			property="rentflag" />
+		<result column="identity" jdbcType="VARCHAR"
+			property="identity" />
+		<result column="housenumber" jdbcType="VARCHAR"
+			property="housenumber" />
+		<result column="opername" jdbcType="VARCHAR"
+			property="opername" />
+		<result column="createtime" jdbcType="TIMESTAMP"
+			property="createtime" />
+		<result column="sellflag" jdbcType="INTEGER"
+				property="sellflag" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		rentid, price, begindate, returndate, rentflag, identity,
+		housenumber,
+		opername, createtime,sellflag,sellprice
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from bus_rent
+		where rentid = #{rentid,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		bus_rent
+		where rentid = #{rentid,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.nxh.bus.domain.Sell">
+		insert into bus_rent (rentid,
+		price, begindate,
+		returndate, rentflag, identity,
+		housenumber, opername,
+		createtime,sellflag,sellprice
+		)
+		values (#{rentid,jdbcType=VARCHAR},
+		#{price,jdbcType=DOUBLE},
+		#{begindate,jdbcType=TIMESTAMP},
+		#{returndate,jdbcType=TIMESTAMP}, #{rentflag,jdbcType=INTEGER},
+		#{identity,jdbcType=VARCHAR},
+		#{housenumber,jdbcType=VARCHAR},
+		#{opername,jdbcType=VARCHAR},
+		#{createtime,jdbcType=TIMESTAMP},#{sellflag,jdbcType=INTEGER},
+		#{sellprice,jdbcType=DOUBLE}
+		)
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.nxh.bus.domain.Sell">
+		insert into bus_rent
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="rentid != null">
+				rentid,
+			</if>
+			<if test="price != null">
+				price,
+			</if>
+			<if test="begindate != null">
+				begindate,
+			</if>
+			<if test="returndate != null">
+				returndate,
+			</if>
+			<if test="rentflag != null">
+				rentflag,
+			</if>
+			<if test="identity != null">
+				identity,
+			</if>
+			<if test="housenumber != null">
+				housenumber,
+			</if>
+			<if test="opername != null">
+				opername,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="sellflag != null">
+				sellflag,
+			</if>
+			<if test="sellprice != null">
+				sellprice,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="rentid != null">
+				#{rentid,jdbcType=VARCHAR},
+			</if>
+			<if test="price != null">
+				#{price,jdbcType=DOUBLE},
+			</if>
+			<if test="begindate != null">
+				#{begindate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="returndate != null">
+				#{returndate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="rentflag != null">
+				#{rentflag,jdbcType=INTEGER},
+			</if>
+			<if test="identity != null">
+				#{identity,jdbcType=VARCHAR},
+			</if>
+			<if test="housenumber != null">
+				#{housenumber,jdbcType=VARCHAR},
+			</if>
+			<if test="opername != null">
+				#{opername,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="sellflag != null">
+				#{sellflag,jdbcType=INTEGER},
+			</if>
+			<if test="sellprice != null">
+				#{sellprice,jdbcType=DOUBLE},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.nxh.bus.domain.Sell">
+		update bus_rent
+		<set>
+			<if test="price != null">
+				price = #{price,jdbcType=DOUBLE},
+			</if>
+			<if test="begindate != null">
+				begindate = #{begindate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="returndate != null">
+				returndate = #{returndate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="rentflag != null">
+				rentflag = #{rentflag,jdbcType=INTEGER},
+			</if>
+			<if test="identity != null">
+				identity = #{identity,jdbcType=VARCHAR},
+			</if>
+			<if test="housenumber != null">
+				housenumber = #{housenumber,jdbcType=VARCHAR},
+			</if>
+			<if test="opername != null">
+				opername = #{opername,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="sellflag != null">
+				sellflag = #{sellflag,jdbcType=INTEGER},
+			</if>
+			<if test="sellprice != null">
+				sellprice = #{sellprice,jdbcType=DOUBLE},
+			</if>
+		</set>
+		where rentid = #{rentid,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.nxh.bus.domain.Sell">
+		update bus_rent
+		set price = #{price,jdbcType=DOUBLE},
+		begindate = #{begindate,jdbcType=TIMESTAMP},
+		returndate =
+		#{returndate,jdbcType=TIMESTAMP},
+		rentflag =
+		#{rentflag,jdbcType=INTEGER},
+		identity = #{identity,jdbcType=VARCHAR},
+		housenumber = #{housenumber,jdbcType=VARCHAR},
+		opername =
+		#{opername,jdbcType=VARCHAR},
+		createtime =
+		#{createtime,jdbcType=TIMESTAMP},
+		sellflag =
+		#{sellflag,jdbcType=INTEGER},
+		sellprice = #{sellprice,jdbcType=DOUBLE}
+		where rentid =
+		#{rentid,jdbcType=VARCHAR}
+	</update>
+	<!-- 查询 -->
+	<select id="queryAllSell" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from bus_rent
+		<where>
+			<if test="rentid!=null and rentid!=''">
+				and rentid like concat("%",#{rentid},"%")
+			</if>
+			<if test="housenumber!=null and housenumber!=''">
+				and housenumber like concat("%",#{housenumber},"%")
+			</if>
+			<if test="identity!=null and identity!=''">
+				and identity like concat("%",#{identity},"%")
+			</if>
+			<if test="startTime!=null">
+				and createtime >=#{startTime}
+			</if>
+			<if test="endTime!=null">
+				and createtime <![CDATA[<=]]>#{endTime}
+			</if>
+			<if test="rentflag!=null">
+				and rentflag=#{rentflag}
+			</if>
+			<if test="sellflag!=null">
+				and sellflag=#{sellflag}
+			</if>
+			<if test="sellprice!=null">
+				and sellprice=#{sellprice}
+			</if>
+		</where>
+		order by createtime desc
+	</select>
+
+</mapper>
